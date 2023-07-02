@@ -50,7 +50,11 @@
     }
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "@mdi/font": "^7.2.96",
+    "sass": "^1.63.6",
+    "vue": "^3.2.25",
+    "vue-router": "^4.2.2",
+    "vuetify": "^3.3.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
