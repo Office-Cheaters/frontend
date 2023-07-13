@@ -7,7 +7,7 @@ export const getPromptResult = async (file: File, prompt: string) => {
   console.log(prompt);
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("propmt", prompt);
+  formData.append("prompt", prompt);
 
   console.log(baseUrl);
 
@@ -17,5 +17,5 @@ export const getPromptResult = async (file: File, prompt: string) => {
     },
   });
 
-  console.log(result);
+  return result;
 };
