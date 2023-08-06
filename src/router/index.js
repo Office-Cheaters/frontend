@@ -8,6 +8,16 @@ const router = createRouter({
       name: "main",
       component: () => import("../view/Main.vue"),
     },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../view/Login.vue"),
+    },
+    {
+      path: "/social_login/callback",
+      name: "social_login_callback",
+      component: () => import("@/components/Login/LoginCallback.vue"),
+    },
   ],
 });
 
