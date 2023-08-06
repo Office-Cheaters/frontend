@@ -13,3 +13,10 @@ export interface promptResponse {
   file: file | null;
   uuid: string;
 }
+
+export interface GoogleVerifyResponse {
+  is_register: boolean;
+  social_token: string;
+  access: string;
+  refresh: string;
+}
