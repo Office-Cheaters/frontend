@@ -1,1 +1,20 @@
-# Office_Cheaters_frontend
+# Office Cheaters
+
+## 프로젝트 설명
+
+Office Cheaters는 사무 업무를 대체할 수 있는 AI 서비스를 제공하는 웹사이트입니다. 엑셀 작업, 데이터 시각화, 정해진 양식대로 발주 넣기 등의 단순 반복 업무를 AI가 대체하여, 사무직들일 일 할 때 치트키처럼 사용할 수 있습니다. 사용자는 작업하고 있는 파일을 드래그하고, 자연어로 원하는 사무 작업을 입력하면 해당 output을 제공합니다.
+
+## 웹사이트
+
+웹사이트 주소: [https://of.fice.kro.kr/](https://of.fice.kro.kr/)
+
+## 사용 방법
+
+1. 웹사이트에 접속한다: [https://of.fice.kro.kr/](https://of.fice.kro.kr/)
+2. 작업하고 있는 파일을 드래그/드롭한다.
+3. 자연어로 원하는 사무 작업을 입력한다.
+4. AI가 처리한 결과를 확인한다.
+
+## 문의사항
+
+문의사항이 있으시면 이메일로 연락주세요: (travelandi01@gmail.com)
