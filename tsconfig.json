@@ -1,25 +1,31 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./src/*"]
-    },
     "target": "esnext",
     "useDefineForClassFields": true,
+    "allowSyntheticDefaultImports": true,
+    // "composite": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": true,
+    "sourceMap": false,
     "resolveJsonModule": true,
-    "isolatedModules": false,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "skipLibCheck": true,
-    "outDir": "dist/electron"
+    "types": ["vuetify"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/electron/**/*"],
+  "include": [
+    "src/electron/**/*",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts"
+  ],
   "exclude": ["node_modules", "dist"],
   "references": [
     {

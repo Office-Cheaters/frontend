@@ -42,13 +42,15 @@
         <v-checkbox
           density="compact"
           hide-details
-          label="정보수집동의"
+          label="데이터수집동의"
           class="ml-2"
           v-model="isPrivate"
         />
         <v-btn icon density="compact" hide-details class="ml-1">
           ?
-          <v-tooltip activator="parent" location="end">설명설명설명</v-tooltip>
+          <v-tooltip activator="parent" location="end"
+            >동의시 OpenAI에 입력 파일 데이터 일부가 전송됩니다</v-tooltip
+          >
         </v-btn>
       </div>
       <div class="input-container">
@@ -102,7 +104,7 @@
         <v-table>
           <tbody>
             <tr
-              v-for="(value, key) in currentPromptResponse.answer.data"
+              v-for="(value, key) in currentPromptResponse.answer?.data"
               :key="key"
             >
               <td>{{ key }}</td>
