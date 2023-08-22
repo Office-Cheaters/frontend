@@ -10,33 +10,48 @@
     </div>
     <div class="contents">
       <!-- 결과물 형식 지정 -->
-      <div class="type-selector mb-2">
-        <v-select
-          variant="outlined"
+      <div class="option-action">
+        <div class="type-selector">
+          <v-select
+            variant="outlined"
+            density="compact"
+            hide-details
+            :items="outputType"
+            v-model="selectedOutputType"
+            class="select"
+          />
+          <v-select
+            v-if="selectedOutputType === '파일'"
+            variant="outlined"
+            density="compact"
+            hide-details
+            :items="fileType"
+            v-model="selectedFileType"
+            class="select ml-2"
+          />
+          <v-select
+            v-if="selectedOutputType === '시각화'"
+            variant="outlined"
+            density="compact"
+            hide-details
+            :items="visualType"
+            v-model="selectedVisualType"
+            class="select ml-2"
+          />
+        </div>
+        <v-checkbox
           density="compact"
           hide-details
-          :items="outputType"
-          v-model="selectedOutputType"
-          class="select"
+          label="데이터수집동의"
+          class="ml-2"
+          v-model="isPrivate"
         />
-        <v-select
-          v-if="selectedOutputType === '파일'"
-          variant="outlined"
-          density="compact"
-          hide-details
-          :items="fileType"
-          v-model="selectedFileType"
-          class="select ml-2"
-        />
-        <v-select
-          v-if="selectedOutputType === '시각화'"
-          variant="outlined"
-          density="compact"
-          hide-details
-          :items="visualType"
-          v-model="selectedVisualType"
-          class="select ml-2"
-        />
+        <v-btn icon density="compact" hide-details class="ml-1">
+          ?
+          <v-tooltip activator="parent" location="end"
+            >동의시 OpenAI에 입력 파일 데이터 일부가 전송됩니다</v-tooltip
+          >
+        </v-btn>
       </div>
       <div class="input-container">
         <!-- 명령어 입력 text area -->
@@ -89,7 +104,7 @@
         <v-table>
           <tbody>
             <tr
-              v-for="(value, key) in currentPromptResponse.answer.data"
+              v-for="(value, key) in currentPromptResponse.answer?.data"
               :key="key"
             >
               <td>{{ key }}</td>
@@ -117,6 +132,8 @@ const selectedFileType = ref("csv");
 const visualType = ["표", "막대 차트", "꺾은선 차트", "도넛 차트"];
 const selectedVisualType = ref("표");
 
+const isPrivate = ref(false);
+
 const uploadedFile: Ref<File[]> = ref(); //업로드한 파일
 const currentPrompt: Ref<string> = ref(""); //현재 명령어
 
@@ -130,9 +147,37 @@ const currentPromptResponse: Ref<promptResponse> = ref({
 
 //실행버튼 클릭 이벤트
 const clickExecuteBtn = async () => {
+  let selectedType = "";
+  if (selectedOutputType.value === "텍스트") {
+    selectedType = "text";
+  } else if (selectedOutputType.value === "이미지") {
+    selectedType = "image";
+  } else if (selectedOutputType.value === "파일") {
+    selectedType = selectedFileType.value;
+  } else {
+    switch (selectedVisualType.value) {
+      case "표":
+        selectedType = "chart";
+        break;
+      case "막대 차트":
+        selectedType = "barChart";
+        break;
+      case "꺾은선 차트":
+        selectedType = "lineChart";
+        break;
+      case "도넛 차트":
+        selectedType = "donutChart";
+        break;
+      default:
+        break;
+    }
+  }
+
   const response = await getPromptResult(
     uploadedFile.value[0],
-    currentPrompt.value
+    currentPrompt.value,
+    selectedType,
+    isPrivate.value
   );
   currentPromptResponse.value = response.data;
   console.log(currentPromptResponse.value);
@@ -214,6 +259,12 @@ watchEffect(() => {
   .select {
     width: 120px;
   }
+}
+
+.option-action {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .contents {

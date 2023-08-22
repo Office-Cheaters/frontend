@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: "/social_login/callback",
       name: "social_login_callback",
-      component: () => import("@/components/Login/LoginCallback.vue"),
+      component: () => import("../components/Login/LoginCallback.vue"),
     },
   ],
 });
